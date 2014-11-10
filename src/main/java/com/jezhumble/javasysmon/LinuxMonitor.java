@@ -1,8 +1,10 @@
 package com.jezhumble.javasysmon;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -149,7 +151,20 @@ class LinuxMonitor implements Monitor {
 
     public void killProcess(int pid) {
         try {
-            Runtime.getRuntime().exec("kill -9 " + pid);
+            final Runtime runtime = Runtime.getRuntime();
+            runtime.exec("kill -TERM " + pid);
+
+            final File processFile = new File("/proc/" + pid);
+            // Wait up to 60 seconds for the process to be killed
+            for (int i = 0; i < 6; i++){
+                Thread.sleep(TimeUnit.SECONDS.toMillis(10));
+                if (!processFile.exists()){
+                    return;
+                }
+            }
+
+            // If not yet dead, force it
+            runtime.exec("kill -KILL " + pid);
         } catch (Exception e) {
             throw new RuntimeException("Could not kill process id " + pid, e);
         }
