@@ -1,3 +1,12 @@
+# Document Control / Repository Information
+Item | Value 
+--- | ---
+Owner |	Christian Semrau
+Team |	Product Managment
+Project  | Product
+Parent |    Platform
+Developed by |	collaboration Factory AG
+Description |	Manage OS processes and get cpu and memory stats cross-platform in Java.
 JavaSysMon
 ==========
 
