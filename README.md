@@ -2,11 +2,12 @@
 Item | Value 
 --- | ---
 Owner |	Christian Semrau
-Team |	Product Managment
+Team |	Platform
 Project  | Product
-Parent |    Platform
+Parent |    none
 Developed by |	collaboration Factory AG
 Description |	Manage OS processes and get cpu and memory stats cross-platform in Java.
+
 JavaSysMon
 ==========
 
